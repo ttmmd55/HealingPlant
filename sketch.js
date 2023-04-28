@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { ARButton } from 'three/addons/webxr/ARButton.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 		let camera, scene, renderer;
@@ -61,8 +62,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			container.appendChild(renderer.domElement);
 
 			//
-
-			document.body.appendChild(GLTFLoader.createButton(renderer));
+			document.body.appendChild(ARButton.createButton(renderer));
 
 			//
 
