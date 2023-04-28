@@ -6,13 +6,13 @@ import * as THREE from 'three';
 		let controller;
 
 		const geometries = [
-			// new THREE.BoxGeometry(0.04, 0.04, 0.04).rotateX( Math.PI / 2 ),
-			// new THREE.ConeGeometry(0.04, 0.04, 64).rotateX( Math.PI / 2 ),
-			// new THREE.CylinderGeometry(0.04, 0.04, 0.1, 5).rotateX( Math.PI / 2 ),
-			// new THREE.CylinderGeometry(0.04, 0.04, 0.04, 64).rotateX( Math.PI / 2 ),
-			// new THREE.IcosahedronGeometry(0.04, 8).rotateX( Math.PI / 2 ),
-			// new THREE.IcosahedronGeometry(0.04, 4).rotateX( Math.PI / 2 ),
-			// new THREE.TorusGeometry(0.04, 0.008, 64, 32).rotateX( Math.PI / 2 )
+			new THREE.BoxGeometry(0.04, 0.04, 0.04).rotateX( Math.PI / 2 ),
+			new THREE.ConeGeometry(0.04, 0.04, 64).rotateX( Math.PI / 2 ),
+			new THREE.CylinderGeometry(0.04, 0.04, 0.1, 5).rotateX( Math.PI / 2 ),
+			new THREE.CylinderGeometry(0.04, 0.04, 0.04, 64).rotateX( Math.PI / 2 ),
+			new THREE.IcosahedronGeometry(0.04, 8).rotateX( Math.PI / 2 ),
+			new THREE.IcosahedronGeometry(0.04, 4).rotateX( Math.PI / 2 ),
+			new THREE.TorusGeometry(0.04, 0.008, 64, 32).rotateX( Math.PI / 2 )
 		];
 
 		init();
