@@ -7,7 +7,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		let mixer;
 
 		const gltfLoader = new GLTFLoader();
-		const url = 'assets/leaf.glb';
+		const url = 'assets/leaf2.0.glb';
 		gltfLoader.load(url, (gltf) => {
 		  const leaf = gltf.scene;
 		  scene.add(leaf);
@@ -67,7 +67,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			//
 
 			function onSelect() {
-				const leaf = gltfLoader[Math.floor(Math.random() * gltfLoader.length)];
+				//const leaf = gltfLoader[Math.floor(Math.random() * gltfLoader.length)];
 				//const geometry = geometries[Math.floor(Math.random() * geometries.length)];
 				// const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
 				// const material = new THREE.MeshPhysicalMaterial({
@@ -75,10 +75,11 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// 	metalness: 1,
 				// 	roughness: 0.1
 				// });
-					const material = new THREE.MeshPhysicalMaterial({
-					color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
-				});
-				 const mesh = new THREE.Mesh(leaf, material);
+				// 	const material = new THREE.MeshPhysicalMaterial({
+				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
+				// });
+				const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+				const mesh = new THREE.Mesh(gltfLoader, material);
 				mesh.position.set(0, 0, - 0.3).applyMatrix4(controller.matrixWorld);
 				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				scene.add(mesh);
