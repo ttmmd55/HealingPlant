@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tree</title>
+    <script src="https://aframe.io/releases/0.9.0/aframe.min.js"></script>
+    <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+
+    <!-- just follow the link in a web browser to copy the code into a local javascript file -->
+	<script async src="https://unpkg.com/es-module-shims@1.6.3/dist/es-module-shims.js"></script>
+	<script type="importmap">
+        {
+            "imports": {
+            "three": "https://unpkg.com/three@0.150.1/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.150.1/examples/jsm/"
+            }
+        }
+        </script>
+
+	<script type="text/javascript" src="libs/dat.gui.min.js"></script>
+	<script type="text/javascript" src="libs/stats.min.js"></script>
+
+	<!-- our code -->
+	<script type="module" src="sketch.js"></script>
+	<!-- <link rel="stylesheet" href="style.css"> -->
+	<link type="text/css" rel="stylesheet" href="main.css">
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <a-asset-items id="plant" src="assets/cafd.gltf"></a-asset-items>
+        </a-assets>
+
+        <a-entity gltf-model="#plant"></a-entity>
+    </a-scene>
+</body>
+</html>
