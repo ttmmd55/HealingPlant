@@ -81,7 +81,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// });
 				const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
 				const mesh = new THREE.Mesh(gltfLoader.load, material);
-				mesh.position.set(0, 0, - 0.3).applyMatrix4(controller.matrixWorld);
+				mesh.position.set(-10, -10, - 10).applyMatrix4(controller.matrixWorld);
 				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				scene.add(mesh);
 			}
