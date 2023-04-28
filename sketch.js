@@ -62,6 +62,14 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			container.appendChild(renderer.domElement);
 
 			//
+			const controls = new OrbitControls( camera, renderer.domElement );
+			controls.addEventListener( 'change', render ); // use if there is no animation loop
+			controls.minDistance = 2;
+			controls.maxDistance = 10;
+			controls.target.set( 0, 0, - 0.2 );
+			controls.update();
+			
+			//
 			document.body.appendChild(ARButton.createButton(renderer));
 
 			//
