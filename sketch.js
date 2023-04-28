@@ -3,12 +3,18 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 		let camera, scene, renderer;
 		let controller;
+		let mixer;
 
 		const gltfLoader = new GLTFLoader();
-		const url = 'assets/cafd.gltf';
+		const url = 'assets/leaf.glb';
 		gltfLoader.load(url, (gltf) => {
-		  const root = gltf.scene;
-		  scene.add(root);
+		  const leaf = gltf.scene;
+		  scene.add(leaf);
+		  mixer = new THREE.AnimationMixer(leaf);
+		  const clips = gltf.animations;
+		  const clip = THREE.AnimationClip.findByName(clips,'Vert.010Action');
+		  const action = mixer.clipAction(clip); 
+		  action.play();
 		});
 		  
 		// const geometries = [
@@ -23,6 +29,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 		init();
 		animate();
+
+		
 
 		function init() {
 
@@ -95,9 +103,10 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		}
 
 		//
-
+		const clock = new THREE.Clock();
 		function animate() {
-
+			if(mixer)
+				mixer.update(clock.getDelta());
 			renderer.setAnimationLoop(render);
 
 		}
