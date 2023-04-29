@@ -5,12 +5,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		let camera, scene, renderer;
 		let controller;
 
-		const gltfLoader = new GLTFLoader();
-		const url = 'assets/tree2.0.glb';
-		gltfLoader.load(url, (gltf) => {
-		  const tree = gltf.scene;
-		  scene.add(tree);
-		});
+		
+		
 
 		init();
 		animate();
@@ -63,8 +59,16 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// 	const material = new THREE.MeshPhysicalMaterial({
 				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
 				// });
-				const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-				const mesh = new THREE.Mesh(gltfLoader, material);
+				
+				const gltfLoader = new GLTFLoader();
+				const url = 'assets/tree2.0.glb';
+				gltfLoader.load(url, (gltf) => {
+				const tree = gltf.scene;
+				scene.add(tree);
+				});
+
+				//const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+				const mesh = new THREE.Mesh(gltfLoader);//, material);
 				mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
 				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				scene.add(mesh);
