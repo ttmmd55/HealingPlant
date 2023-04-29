@@ -46,7 +46,13 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			document.body.appendChild(ARButton.createButton(renderer));
 
 			//
-
+			const gltfLoader = new GLTFLoader();
+			const url = 'assets/tree2.0.glb';
+			gltfLoader.load(url, (gltf) => {
+			const tree = gltf.scene;
+			scene.add(tree);
+			});
+			
 			function onSelect() {
 				//const leaf = gltfLoader[Math.floor(Math.random() * gltfLoader.length)];
 				//const geometry = geometries[Math.floor(Math.random() * geometries.length)];
@@ -59,13 +65,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// 	const material = new THREE.MeshPhysicalMaterial({
 				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
 				// });
+
 				
-				const gltfLoader = new GLTFLoader();
-				const url = 'assets/tree2.0.glb';
-				gltfLoader.load(url, (gltf) => {
-				const tree = gltf.scene;
-				scene.add(tree);
-				});
 
 				//const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
 				const mesh = new THREE.Mesh(gltfLoader);//, material);
