@@ -2,11 +2,15 @@ import * as THREE from 'three';
 import { ARButton } from 'three/addons/webxr/ARButton.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
-		let camera, scene, renderer, controls;
-		let tree;
-		//let controller;
-		//let mixer;
-		  
+		let camera, scene, renderer;
+		let controller;
+
+		const gltfLoader = new GLTFLoader();
+		const url = 'assets/tree2.0.glb';
+		gltfLoader.load(url, (gltf) => {
+		  const tree = gltf.scene;
+		  scene.add(tree);
+		});
 
 		init();
 		animate();
@@ -32,16 +36,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			lightB.shadow.camera.near = 0.5
 			lightB.shadow.camera.far = 100
 			scene.add(lightB);
-			
-			//
 
-			const gltfLoader = new GLTFLoader();
-			const url = 'assets/tree2.0.glb';
-			gltfLoader.load(url, (gltf) => {
-			  const tree = gltf.scene;
-			  scene.add(tree);
-			});
-			
 			//
 
 			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -54,85 +49,55 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			//
 			document.body.appendChild(ARButton.createButton(renderer));
 
-			// Create touch event listener for displaying the tree
-			document.addEventListener('touchstart', (event) => {
-				event.preventDefault();
-
-				if (!tree) return;
-
-				// Create a raycaster and set its position based on the touch event
-				const raycaster = new THREE.Raycaster();
-				const touch = event.touches[0];
-				const x = (touch.clientX / window.innerWidth) * 2 - 1;
-				const y = -(touch.clientY / window.innerHeight) * 2 + 1;
-				raycaster.setFromCamera({ x, y }, camera);
-
-				// Find the first intersected object and display the model at its position
-				const intersects = raycaster.intersectObjects(scene.children, true);
-				if (intersects.length > 0) {
-				const intersect = intersects[0];
-				const position = new THREE.Vector3().copy(intersect.point);
-				model.position.copy(position);
-				model.visible = true;
-				}
-			}, { passive: false });
-
-			// Create a controls object for device orientation
-			controls = new THREE.DeviceOrientationControls(camera);
-			controls.enabled = false;
-			}
-
-			function animate() {
-			renderer.setAnimationLoop(render);
-			}
-
-			function render() {
-			// Update controls and render scene
-			controls.update();
-			renderer.render(scene, camera);
-			}
 			//
 
-		// 	function onSelect() {
+			function onSelect() {
+				//const leaf = gltfLoader[Math.floor(Math.random() * gltfLoader.length)];
+				//const geometry = geometries[Math.floor(Math.random() * geometries.length)];
+				// const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
+				// const material = new THREE.MeshPhysicalMaterial({
+				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5),
+				// 	metalness: 1,
+				// 	roughness: 0.1
+				// });
+				// 	const material = new THREE.MeshPhysicalMaterial({
+				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
+				// });
+				const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
+				const mesh = new THREE.Mesh(geometry, material);
+				mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
+				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
+				scene.add(mesh);
+			}
 
-		// 		const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-		// 		const mesh = new THREE.Mesh(geometry, material);
-		// 		mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
-		// 		mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
-		// 		mesh.scale.set( 0.05, 0.05, 0.05 );
-		// 		scene.add(mesh);
-		// 	}
+			controller = renderer.xr.getController(0);
+			controller.addEventListener('select', onSelect);
+			scene.add(controller);
 
-		// 	controller = renderer.xr.getController(0);
-		// 	controller.addEventListener('select', onSelect);
-		// 	scene.add(controller);
+			//
 
-		// 	//
+			window.addEventListener('resize', onWindowResize);
 
-		// 	window.addEventListener('resize', onWindowResize);
+		}
 
-		// }
+		function onWindowResize() {
 
-		// function onWindowResize() {
+			camera.aspect = window.innerWidth / window.innerHeight;
+			camera.updateProjectionMatrix();
 
-		// 	camera.aspect = window.innerWidth / window.innerHeight;
-		// 	camera.updateProjectionMatrix();
+			renderer.setSize(window.innerWidth, window.innerHeight);
 
-		// 	renderer.setSize(window.innerWidth, window.innerHeight);
+		}
 
-		// }
+		//
+	
+		function animate() {
+			renderer.setAnimationLoop(render);
 
-		// //
-		// //const clock = new THREE.Clock();
-		// function animate() {
-		// 	// if(mixer)
-		// 	// 	mixer.update(clock.getDelta());
-		// 	renderer.setAnimationLoop(render);
+		}
 
-		// }
+		function render() {
 
-		// function render() {
+			renderer.render(scene, camera);
 
-		// 	renderer.render(scene, camera);
-
-		// }
+		}
