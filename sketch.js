@@ -83,7 +83,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				const mesh = new THREE.Mesh(geometry, material);
 				mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
 				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
-				mesh.scale.set( 0.5, 0.5, 0.5 );
+				mesh.scale.set( 0.05, 0.05, 0.05 );
 				scene.add(mesh);
 			}
 
