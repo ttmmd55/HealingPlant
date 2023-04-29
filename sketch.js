@@ -6,18 +6,6 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		let tree;
 		//let controller;
 		//let mixer;
-
-		const gltfLoader = new GLTFLoader();
-		const url = 'assets/tree2.0.glb';
-		gltfLoader.load(url, (gltf) => {
-		  const tree = gltf.scene;
-		  scene.add(tree);
-		//   mixer = new THREE.AnimationMixer(tree);
-		//   const clips = gltf.animations;
-		//   const clip = THREE.AnimationClip.findByName(clips,'Vert.010Action');
-		//   const action = mixer.clipAction(clip); 
-		//   action.play();
-		});
 		  
 
 		init();
@@ -44,7 +32,16 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			lightB.shadow.camera.near = 0.5
 			lightB.shadow.camera.far = 100
 			scene.add(lightB);
+			
+			//
 
+			const gltfLoader = new GLTFLoader();
+			const url = 'assets/tree2.0.glb';
+			gltfLoader.load(url, (gltf) => {
+			  const tree = gltf.scene;
+			  scene.add(tree);
+			});
+			
 			//
 
 			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
