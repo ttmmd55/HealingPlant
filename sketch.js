@@ -46,11 +46,20 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			document.body.appendChild(ARButton.createButton(renderer));
 
 			//
-			const gltfLoader = new GLTFLoader();
-			const url = 'assets/tree2.0.glb';
-			gltfLoader.load(url, (gltf) => {
-			const tree = gltf.scene;
-			scene.add(tree);
+			// const gltfLoader = new GLTFLoader();
+			// const url = 'assets/tree2.0.glb';
+			// gltfLoader.load(url, (gltf) => {
+			// const tree = gltf.scene;
+			// scene.add(tree);
+			// });
+
+			const loader = new THREE.GLTFLoader();
+
+			loader.load( 'assets/tree2.0.glb', function ( gltf ) {
+			
+				const model = gltf.scene;
+				scene.add( model );
+			
 			});
 			
 			function onSelect() {
@@ -69,10 +78,14 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				
 
 				//const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
-				const mesh = new THREE.Mesh(gltfLoader);//, material);
-				mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
-				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
-				scene.add(mesh);
+				// const mesh = new THREE.Mesh(gltfLoader);//, material);
+				// mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
+				// mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
+				// scene.add(mesh);
+				const modelInstance = model.clone();
+				modelInstance.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
+				modelInstance.quaternion.setFromRotationMatrix( controller.matrixWorld );
+				scene.add( modelInstance );
 			}
 
 			controller = renderer.xr.getController(0);
