@@ -7,15 +7,15 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		let mixer;
 
 		const gltfLoader = new GLTFLoader();
-		const url = 'assets/leaf2.0.glb';
+		const url = 'assets/tree2.0.glb';
 		gltfLoader.load(url, (gltf) => {
-		  const leaf = gltf.scene;
-		  scene.add(leaf);
-		  mixer = new THREE.AnimationMixer(leaf);
-		  const clips = gltf.animations;
-		  const clip = THREE.AnimationClip.findByName(clips,'Vert.010Action');
-		  const action = mixer.clipAction(clip); 
-		  action.play();
+		  const tree = gltf.scene;
+		  scene.add(tree);
+		//   mixer = new THREE.AnimationMixer(tree);
+		//   const clips = gltf.animations;
+		//   const clip = THREE.AnimationClip.findByName(clips,'Vert.010Action');
+		//   const action = mixer.clipAction(clip); 
+		//   action.play();
 		});
 		  
 		// const geometries = [
@@ -83,6 +83,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				const mesh = new THREE.Mesh(gltfLoader.load, material);
 				mesh.position.set(-10, -10, - 10).applyMatrix4(controller.matrixWorld);
 				mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
+				mesh.scale.set( 0.5, 0.5, 0.5 );
 				scene.add(mesh);
 			}
 
@@ -106,10 +107,10 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		}
 
 		//
-		const clock = new THREE.Clock();
+		//const clock = new THREE.Clock();
 		function animate() {
-			if(mixer)
-				mixer.update(clock.getDelta());
+			// if(mixer)
+			// 	mixer.update(clock.getDelta());
 			renderer.setAnimationLoop(render);
 
 		}
