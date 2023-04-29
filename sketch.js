@@ -2,8 +2,9 @@ import * as THREE from 'three';
 import { ARButton } from 'three/addons/webxr/ARButton.js';
 import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
-		let camera, scene, renderer;
-		let controller;
+		let camera, scene, renderer, controls;
+		let tree;
+		//let controller;
 		//let mixer;
 
 		const gltfLoader = new GLTFLoader();
