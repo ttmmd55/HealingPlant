@@ -4,7 +4,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 		let camera, scene, renderer;
 		let controller;
-		let mixer;
+		//let mixer;
 
 		const gltfLoader = new GLTFLoader();
 		const url = 'assets/tree2.0.glb';
@@ -18,15 +18,6 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 		//   action.play();
 		});
 		  
-		// const geometries = [
-		// 	new THREE.BoxGeometry(0.04, 0.04, 0.04).rotateX( Math.PI / 2 ),
-		// 	new THREE.ConeGeometry(0.04, 0.04, 64).rotateX( Math.PI / 2 ),
-		// 	new THREE.CylinderGeometry(0.04, 0.04, 0.1, 5).rotateX( Math.PI / 2 ),
-		// 	new THREE.CylinderGeometry(0.04, 0.04, 0.04, 64).rotateX( Math.PI / 2 ),
-		// 	new THREE.IcosahedronGeometry(0.04, 8).rotateX( Math.PI / 2 ),
-		// 	new THREE.IcosahedronGeometry(0.04, 4).rotateX( Math.PI / 2 ),
-		// 	new THREE.TorusGeometry(0.04, 0.008, 64, 32).rotateX( Math.PI / 2 )
-		// ];
 
 		init();
 		animate();
@@ -68,17 +59,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			//
 
 			function onSelect() {
-				//const leaf = gltfLoader[Math.floor(Math.random() * gltfLoader.length)];
-				//const geometry = geometries[Math.floor(Math.random() * geometries.length)];
-				// const material = new THREE.MeshPhongMaterial({ color: 0xffffff * Math.random() });
-				// const material = new THREE.MeshPhysicalMaterial({
-				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5),
-				// 	metalness: 1,
-				// 	roughness: 0.1
-				// });
-				// 	const material = new THREE.MeshPhysicalMaterial({
-				// 	color: new THREE.Color().setHSL(Math.random(), 1, 0.5)
-				// });
+
 				const material = new THREE.MeshPhongMaterial( { color: 0xffffff * Math.random() } );
 				const mesh = new THREE.Mesh(geometry, material);
 				mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
