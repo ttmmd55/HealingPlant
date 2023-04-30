@@ -25,13 +25,17 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
 			light.position.set(0.5, 1, 0.25);
 			scene.add(light);
-			const lightB = new THREE.DirectionalLight()
-			lightB.castShadow = true
-			lightB.shadow.mapSize.width = 640
-			lightB.shadow.mapSize.height = 480
-			lightB.shadow.camera.near = 0.5
-			lightB.shadow.camera.far = 100
-			scene.add(lightB);
+			// const lightB = new THREE.DirectionalLight()
+			// lightB.castShadow = true
+			// lightB.shadow.mapSize.width = 640
+			// lightB.shadow.mapSize.height = 480
+			// lightB.shadow.camera.near = 0.5
+			// lightB.shadow.camera.far = 100
+			// scene.add(lightB);
+			const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+			directionalLight.position.set(0, 1, 0);
+			scene.add(directionalLight);
+
 
 			//
 
