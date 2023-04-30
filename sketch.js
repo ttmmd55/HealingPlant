@@ -57,11 +57,11 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			// scene.add(tree);
 			// });
 
-			const loader = new THREE.GLTFLoader();
+			const loader = new GLTFLoader();
 
-			loader.load( 'assets/tree2.0.glb', (gltf) => {
-			
+			loader.load( 'assets/tree2.0.glb', function(gltf) {
 				const model = gltf.scene;
+				console.log(model); 
 				scene.add( model );
 			
 			});
