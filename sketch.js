@@ -62,6 +62,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 			
 			function onSelect() {
 				const modelInstance = modelInstances[modelInstances.length - 1].clone();
+				modelInstance.scale.set(0.67, 0.67, 0.67);
 				modelInstance.position.set(0, 0, -0.3).applyMatrix4(controller.matrixWorld);
 				modelInstance.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				scene.add(modelInstance);
