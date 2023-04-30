@@ -87,7 +87,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				// scene.add(mesh);
 				const modelInstance = model.clone();
-				modelInstance.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
+				modelInstance.position.set( 0, 0, - 0.1 ).applyMatrix4( controller.matrixWorld );
 				modelInstance.quaternion.setFromRotationMatrix( controller.matrixWorld );
 				scene.add( modelInstance );
 			}
