@@ -4,8 +4,8 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 		let camera, scene, renderer;
 		let controller;
-		let model;
-		
+		//let model;
+		const modelInstances = [];
 		
 
 		init();
@@ -61,8 +61,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 			loader.load( 'assets/tree2.0.glb', function(gltf) {
 				const model = gltf.scene;
-				console.log(model); 
-				scene.add( model );
+				modelInstances.push(model);
 			
 			});
 
@@ -94,10 +93,11 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
 				// mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				// scene.add(mesh);
-				const modelInstance = model.clone();
-				modelInstance.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
-				modelInstance.quaternion.setFromRotationMatrix( controller.matrixWorld );
-				scene.add( modelInstance );
+				const modelInstance = modelInstances[modelInstances.length - 1].clone();
+				modelInstance.position.set(0, 0, -0.3).applyMatrix4(controller.matrixWorld);
+				modelInstance.quaternion.setFromRotationMatrix(controller.matrixWorld);
+				scene.add(modelInstance);
+				modelInstances.push(modelInstance);
 			}
 
 			
