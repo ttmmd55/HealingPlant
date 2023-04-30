@@ -94,12 +94,10 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 				// mesh.position.set(0, 0, - 10).applyMatrix4(controller.matrixWorld);
 				// mesh.quaternion.setFromRotationMatrix(controller.matrixWorld);
 				// scene.add(mesh);
-				if (model) {
-					const modelInstance = model.clone();
-					modelInstance.position.set(0, 0, -0.3).applyMatrix4(controller.matrixWorld);
-					modelInstance.quaternion.setFromRotationMatrix(controller.matrixWorld);
-					scene.add(modelInstance);
-				  }
+				const modelInstance = model.clone();
+				modelInstance.position.set( 0, 0, - 0.3 ).applyMatrix4( controller.matrixWorld );
+				modelInstance.quaternion.setFromRotationMatrix( controller.matrixWorld );
+				scene.add( modelInstance );
 			}
 
 			
