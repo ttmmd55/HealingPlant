@@ -46,7 +46,7 @@ import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
 
 			const loader = new GLTFLoader();
 
-			loader.load( 'assets/tree2.0.glb', function(gltf) {
+			loader.load( 'assets/tree3.0.glb', function(gltf) {
 				const model = gltf.scene;
 				modelInstances.push(model);
 			
